@@ -23,7 +23,7 @@ contract HelloWorld{
     }
 
 // Modify the Person struct and  add an address property Creator. Make sure to edit the createPerson function so that it sets this property to the msg.sender.
-    function createPerson(string memory name, uint age, uint height, bool senior, address creator) public {
+    function createPerson(string memory name, uint age, uint height) public {
         Person memory newPerson;
         newPerson.name = name;
         newPerson.age = age;
