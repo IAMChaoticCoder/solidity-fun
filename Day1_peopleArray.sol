@@ -17,9 +17,8 @@ contract HelloWorld{
     
     // functions
 
-    function getPerson(uint index) public  {
+    function getPerson(uint index) public view returns (string memory name, uint age, uint height, bool senior, address Creator)  {
         //- Create a public get function where we can input an people and retrieve the Person object with that people in the array.
-        // compiler does not like the number of args I have.
         return (people[index].name, people[index].age, people[index].height, people[index].senior, people[index].Creator); // pull info for supplied index
     }
 
