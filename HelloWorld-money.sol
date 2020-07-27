@@ -77,19 +77,7 @@ contract HelloWorld{
    function getCreator(uint index) public view onlyOwner returns(address){
        return creators[index];
    }
-    /* 
-    1. Implement a function or functions so that the people in the mapping can update their information. 
-        -- so public function by modifier for onlyOwner where address matches
-    Make sure to use the correct data location so that the update is saved. 
-        -- so, storage location
-    This function should use assert to verify that the changes have taken place. 
-        -- add an  assert?
-    2. Create an event called PersonUpdated that is emitted when a persons information is updated. 
-        -- so event and emit
-        The event should contain both the old and the updated information of the person. 
-        -- element name "xyz" changed to "abc"
-
-    */
+   
     function updatePerson( string memory name, uint age, uint, uint height) public  onlyOwner {
         address creator = msg.sender;
         string memory prevName = people[msg.sender].name;  // keep prev name
