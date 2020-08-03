@@ -1,4 +1,5 @@
-pragma solidity ^0.6.4;
+pragma solidity 0.5.12;
+
 // MNP ChaoticCoder
 
 
@@ -14,7 +15,8 @@ contract Ownable{
         owner = msg.sender;
     }
 }
-    
+
+
 
 contract People is Ownable{
 
@@ -88,7 +90,7 @@ contract People is Ownable{
     }
  
  
-    function fire(address creator) public onlyOwner {
+    function deletePerson(address creator) public onlyOwner {
       string memory name = people[creator].name;
       bool senior = people[creator].senior;
 
@@ -109,3 +111,46 @@ contract People is Ownable{
        return toTransfer;
    }
 }
+
+
+
+contract Workers is People{
+    
+     
+    function fire(address _address) public onlyOwner {
+      deletePerson(_address);
+      salary[_address] = 0;
+
+   }
+   
+    mapping (address => uint ) internal salary;    //set the salary for the Worker
+        
+    function createWorker(string memory name,uint age, uint height) public rightAge(age){
+       /* section to create salary
+        uint base = 40000; //base
+        uint sal;
+        sal = base + (age*720);          
+        */
+        createPerson(name,  age,  height);
+
+
+    }
+
+
+
+}
+
+/*
+For clarity, start by renaming your contract from HelloWorld to People. 
+
+Then, create a file with new contract called Workers, which should inherit from People. Then implement the functionality listed below. When you are done. Hand in a link to your code to Google Classroom for the Inheritance Assignment.
+
+The Workers-contract should have the following functions and properties:
+
+- Should inherit from the People Contract. 
+- Should extend the People contract by adding another mapping called salary which maps an address to an integer. 
+- Have a createWorker function which is a wrapper function for the createPerson function. Make sure to figure out the correct visibility level for the createPerson function (it should no longer be public).
+- Apart from calling the createPerson function, the createWorker function should also set the salary for the Worker in the new mapping.
+- When creating a worker, the persons age should not be allowed to be over 75. 
+- Implement a fire function, which removes the worker from the contract.
+*/
